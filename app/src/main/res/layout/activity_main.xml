@@ -134,14 +134,17 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rvExerciseStatus"
-
+        android:layout_height="0dp"
+        android:id="@+id/rvData"
+        android:visibility="invisible"
+        app:layout_constraintHeight_default="spread"
         app:layout_constraintTop_toBottomOf="@id/addRecord"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

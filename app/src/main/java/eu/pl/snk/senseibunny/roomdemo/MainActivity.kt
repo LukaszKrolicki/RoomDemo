@@ -2,9 +2,13 @@ package eu.pl.snk.senseibunny.roomdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import eu.pl.snk.senseibunny.roomdemo.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +24,13 @@ class MainActivity : AppCompatActivity() {
 
         binding?.addRecord?.setOnClickListener{
             addRecord(personDao)
+        }
+
+        lifecycleScope.launch{//it works in background
+            personDao.fetchAllEmployess().collect(){
+                val list = ArrayList(it)//we create ArrayList from it
+                setupListofDataIntoRecyclerView(list,personDao)
+            }
         }
     }
 
@@ -40,5 +51,19 @@ class MainActivity : AppCompatActivity() {
         else{
             Toast.makeText(applicationContext,"Record NOT saved", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun setupListofDataIntoRecyclerView(personList: ArrayList<PersonEntity>, personDao: PersonDao){
+        if(personList.isNotEmpty()){
+            val itemAdapter= ItemAdapter(personList)
+
+            binding?.rvData?.layoutManager=LinearLayoutManager(this)
+            binding?.rvData?.adapter=itemAdapter
+            binding?.rvData?.visibility= View.VISIBLE
+        }
+        else{
+
+        }
+
     }
 }
