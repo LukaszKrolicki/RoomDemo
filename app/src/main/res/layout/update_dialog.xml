@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/titleUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Record"
+        android:layout_marginHorizontal="20dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="140dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:id="@+id/datall"
+        android:id="@+id/updatell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleUpdate"
         >
 
         <LinearLayout
@@ -42,7 +55,7 @@
                 android:gravity="center">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/name"
+                    android:id="@+id/name_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -51,7 +64,7 @@
 
                     >
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/name_input"
+                        android:id="@+id/name_input_update"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionGo"
@@ -94,7 +107,7 @@
                 android:layout_height="75dp"
                 android:layout_weight="0.75">
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/email"
+                    android:id="@+id/email_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -103,7 +116,7 @@
 
                     >
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/email_input"
+                        android:id="@+id/email_input_update"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionGo"
@@ -119,29 +132,39 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="150dp"
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add record"
-        android:textSize="15dp"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintTop_toBottomOf="@id/datall"
+        app:layout_constraintTop_toBottomOf="@id/updatell"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:id="@+id/addRecord"
-        android:backgroundTint="@color/colorAccent"
-        />
+        android:layout_marginRight="10dp"
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rvExerciseStatus"
 
-        app:layout_constraintTop_toBottomOf="@id/addRecord"
+        >
+        <Button
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/finishbutton2"
+            android:layout_marginTop="10dp"
+            android:id="@+id/finishbutton1"
+            android:backgroundTint="@color/black"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="15dp"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintStart_toEndOf="@+id/finishbutton1"
+            android:layout_marginTop="10dp"
+            android:id="@+id/finishbutton2"
+            android:backgroundTint="@color/colorAccent"
+            />
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
