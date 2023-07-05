@@ -7,9 +7,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import eu.pl.snk.senseibunny.roomdemo.databinding.DataItemBinding
 
-class ItemAdapter(private val items: ArrayList<PersonEntity>)://,private val updateListener:(id:Int)->Unit,
-                  //private val deleteListner:(id:Int)->Unit
+class ItemAdapter(private val items: ArrayList<PersonEntity>,private val updateListener:(id:Int)->Unit,private val deleteListner:(id:Int)->Unit)://
+                  //
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+
+    var checker: Boolean=false
 
     class ViewHolder(binding: DataItemBinding): RecyclerView.ViewHolder(binding.root){
         val llMain=binding.main
@@ -24,8 +26,14 @@ class ItemAdapter(private val items: ArrayList<PersonEntity>)://,private val upd
     }
 
     override fun getItemCount(): Int {
+
+        if(checker){
+            return items.size-3
+        }
         return items.size
     }
+
+
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) { // what should do for every item when view is bind
@@ -40,11 +48,15 @@ class ItemAdapter(private val items: ArrayList<PersonEntity>)://,private val upd
         }
 
         holder.update.setOnClickListener{
-            //updateListener.invoke(item.id)
+            updateListener.invoke(item.id)
         }
 
         holder.delete.setOnClickListener(){
-            //deleteListner.invoke(item.id)
+            checker=items.size==1
+
+            deleteListner.invoke(item.id)
         }
+
+
     }
 }
